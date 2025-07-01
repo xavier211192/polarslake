@@ -13,14 +13,11 @@ data = {
 df = pl.DataFrame(data).with_columns(
     [
         pl.lit(True).alias('is_current'),
-        pl.lit(False).alias('is_deleted'),
-        pl.lit(datetime(1900,1,1,0,0,0,0)).alias('valid_from'),
-        pl.lit(datetime(9999,12,31,0,0,0,0)).alias('valid_to')
     ]
 )
 print(df)
-
-table_path = "./data/deltalake/product"
-# df.write_delta(table_path,mode="append")
+table_path = "src/data/deltalake/product"
+##1.31.0 is not working 
+df.write_delta(table_path,mode='append')
 
 
